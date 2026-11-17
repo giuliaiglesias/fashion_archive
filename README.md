@@ -13,4 +13,4 @@ Plain HTML, CSS and JavaScript (no frameworks). Each designer, runway show and m
 - `TESTING.md`: test checklist and results
 
 ## Status
-In progress. Done: Designers (9), Runways (9, shown as front-row tickets), Models (9, Polaroid board) and an interactive Timeline. Still to build: Mannequin Room, Search, About, Sources and Accessibility pages, photos and videos.
+In progress. Done: Designers (9), Runways (9, as front-row tickets), Models (9, Polaroid board), interactive Timeline and Mannequin Room. Still to build: Search, About, Sources and Accessibility pages, photos and videos.

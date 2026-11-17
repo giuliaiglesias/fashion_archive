@@ -263,3 +263,114 @@ function initTimeline() {
   show(h ? +h[1] : 1990);
 }
 document.addEventListener("DOMContentLoaded", initTimeline);
+
+/* ==========================================================
+   MANNEQUIN ROOM (mannequin.html)
+   Each piece is a hidden group in the SVG. Clicking a button
+   shows or hides its group. Pieces in the same slot replace
+   each other, and a dress replaces a top and trousers.
+   ========================================================== */
+function initMannequin() {
+  const root = document.getElementById("mq");
+  if (!root) return;
+  const buttons = Array.from(root.querySelectorAll(".mq-piece"));
+  const svg = document.getElementById("mqSvg");
+  const look = document.getElementById("mqLook");
+  const note = document.getElementById("mqNote");
+  const spray = document.getElementById("mqSpray");
+  const worn = {};   // slot -> button
+
+  function group(b) { return document.getElementById("p-" + b.dataset.id); }
+  function setOn(b, on) {
+    const g = group(b);
+    if (g) g.toggleAttribute("hidden", !on);
+    b.setAttribute("aria-pressed", String(on));
+    b.querySelector(".mq-state").textContent = on ? "Take off" : "Put on";
+    b.classList.toggle("on", on);
+    if (on) worn[b.dataset.slot] = b; else if (worn[b.dataset.slot] === b) delete worn[b.dataset.slot];
+  }
+  function removeSlot(slot) { if (worn[slot]) setOn(worn[slot], false); }
+
+  function describe(extra) {
+    const names = Object.values(worn).map(b => b.dataset.name.toLowerCase());
+    look.textContent = names.length ? "Your look: " + names.join(", ") + "." : "Your look: nothing yet.";
+    svg.setAttribute("aria-label", names.length ? "A grey dress form wearing " + names.join(", ") : "A grey dress form, wearing nothing yet");
+    if (extra) { note.innerHTML = ""; note.append(extra); }
+    updateSpray();
+  }
+  function story(b) {
+    const f = document.createDocumentFragment();
+    const strong = document.createElement("strong");
+    strong.textContent = b.dataset.name + " · " + b.dataset.show;
+    const p = document.createElement("span");
+    p.textContent = " " + b.dataset.note + " ";
+    const a = document.createElement("a");
+    a.href = b.dataset.href; a.textContent = "Read the story →";
+    f.append(strong, document.createElement("br"), p, a);
+    return f;
+  }
+  function updateSpray() {
+    const white = worn.dress && worn.dress.dataset.id === "dress-white";
+    spray.hidden = !white;
+    if (!white) { document.getElementById("p-spray").setAttribute("hidden", ""); spray.setAttribute("aria-pressed", "false"); }
+  }
+  /* REAL PHOTOS (optional): put a photo called  images/mannequin/<piece id>.jpg  in the images folder
+     (ids: dress-red, dress-white, dress-green, shirt, bra, jacket, plaid, vest) and write its alt text
+     and credit here. The credit must ALSO be written in SOURCES.md. Without a photo nothing is shown. */
+  const PHOTOS = {
+    "dress-red":   { alt: "", credit: "" },
+    "dress-white": { alt: "", credit: "" },
+    "dress-green": { alt: "", credit: "" },
+    "shirt":       { alt: "", credit: "" },
+    "bra":         { alt: "", credit: "" },
+    "jacket":      { alt: "", credit: "" },
+    "plaid":       { alt: "", credit: "" },
+    "vest":        { alt: "", credit: "" }
+  };
+  const fig = document.getElementById("mqPhoto"), figImg = document.getElementById("mqPhotoImg"), figCap = document.getElementById("mqPhotoCap");
+  function showPhoto(b) {
+    fig.hidden = true;
+    const info = PHOTOS[b.dataset.id];
+    if (!info || !info.credit) return;      // only show a photo once its credit is filled in
+    const test = new Image();
+    test.onload = () => { figImg.src = test.src; figImg.alt = info.alt; figCap.textContent = info.credit; fig.hidden = false; };
+    test.src = "images/mannequin/" + b.dataset.id + ".jpg";
+  }
+  function toggle(b) {
+    if (b.getAttribute("aria-pressed") === "true") { setOn(b, false); describe(); fig.hidden = true; return; }
+    const s = b.dataset.slot;
+    if (s === "dress") { removeSlot("top"); removeSlot("bottom"); }
+    if (s === "top" || s === "bottom") removeSlot("dress");
+    removeSlot(s);
+    setOn(b, true);
+    describe(story(b));
+    showPhoto(b);
+  }
+  buttons.forEach(b => b.addEventListener("click", () => toggle(b)));
+
+  document.getElementById("mqClear").addEventListener("click", () => {
+    buttons.forEach(b => setOn(b, false));
+    note.textContent = "Choose a piece to learn where it comes from.";
+    fig.hidden = true;
+    describe();
+  });
+  spray.addEventListener("click", () => {
+    const g = document.getElementById("p-spray");
+    g.toggleAttribute("hidden");
+    const sprayed = !g.hasAttribute("hidden");
+    spray.setAttribute("aria-pressed", String(sprayed));
+    if (sprayed) { note.innerHTML = ""; note.append("In the real show, two robots sprayed Shalom Harlow’s white dress black and yellow."); }
+  });
+  document.getElementById("mqSurprise").addEventListener("click", () => {
+    buttons.forEach(b => setOn(b, false));
+    const pick = slot => { const l = buttons.filter(b => b.dataset.slot === slot); return l[Math.floor(Math.random() * l.length)]; };
+    const chosen = [];
+    chosen.push(pick(Math.random() < 0.55 ? "dress" : "top"));
+    if (Math.random() < 0.6) chosen.push(pick("outer"));
+    chosen.forEach(b => setOn(b, true));
+    describe();
+    note.textContent = "A surprise look. Choose any piece to read its story.";
+  });
+  describe();
+}
+document.addEventListener("DOMContentLoaded", initMannequin);

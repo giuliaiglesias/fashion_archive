@@ -13,8 +13,103 @@
   <header class="site-header" id="site-header"></header>
   <main id="main">
     <div class="wrap">
-      <div class="page-head"><p class="label">ARCHIVE</p><h1>Mannequin Room</h1></div>
-      <div class="page-body"><p>Coming soon: dress the archive.</p></div>
+      <div class="page-head"><p class="label">ARCHIVE &middot; Dress the archive</p><h1>Mannequin Room</h1><p class="standfirst">Pick pieces from the shows and dress the form yourself.</p></div>
+      <div class="page-body">
+        <p class="lede">Each piece comes from a show or designer in this museum. Put it on, take it off, and read where it comes from. The drawings are simple illustrations inspired by the descriptions, not copies of the real clothes.</p>
+        <div class="mq" id="mq">
+          <div class="mq-stage">
+            <svg id="mqSvg" viewBox="0 0 300 620" role="img" aria-label="A grey dress form, wearing nothing yet">
+  <defs>
+    <pattern id="mqdots" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#d4d4d0"/><circle cx="3" cy="3" r="1.4" fill="#0b0b0b" opacity=".35"/></pattern>
+    <pattern id="plaid" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#e8e8e5"/><rect width="5" height="16" fill="#b3141f" opacity=".8"/><rect width="16" height="5" fill="#0b0b0b" opacity=".55"/><rect x="10" width="1.5" height="16" fill="#0b0b0b" opacity=".5"/></pattern>
+    <pattern id="jungle" width="30" height="30" patternUnits="userSpaceOnUse"><rect width="30" height="30" fill="#1f7a4d"/><ellipse cx="8" cy="9" rx="10" ry="4" transform="rotate(-40 8 9)" fill="#12512f"/><ellipse cx="22" cy="22" rx="11" ry="4" transform="rotate(35 22 22)" fill="#3aa56b"/></pattern>
+    <pattern id="velvet" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="#3b1233"/><rect width="2" height="4" fill="#4d1a44" opacity=".7"/></pattern>
+    <linearGradient id="satin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ece5d5"/><stop offset=".5" stop-color="#b9b09c"/><stop offset="1" stop-color="#e2dac9"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0d98a"/><stop offset="1" stop-color="#b8923a"/></linearGradient>
+    <path id="whiteShape" d="M136 80 C118 84 94 94 74 112 C66 120 68 130 76 138 C84 146 88 158 84 174 C80 192 78 206 88 228 C96 246 102 258 102 272 C102 298 80 324 72 354 C64 400 46 440 40 468 L260 468 C254 440 236 400 228 354 C220 324 198 298 198 272 C198 258 204 246 212 228 C222 206 220 192 216 174 C212 158 216 146 224 138 C232 130 234 120 226 112 C206 94 182 84 164 80 C158 96 142 96 136 80 Z"/>
+    <clipPath id="clipWhite"><use href="#whiteShape"/></clipPath>
+    <g id="coneL"><path d="M150 150 L60 176 L150 204 Z" fill="url(#gold)" stroke="#0b0b0b" stroke-width="2"/><path d="M128 158 C120 172 120 182 128 196 M104 164 C98 174 98 180 104 190" fill="none" stroke="#7a5a1a" stroke-width="1.5"/></g>
+  </defs>
+  <ellipse cx="150" cy="606" rx="120" ry="10" fill="#f6f6f3" opacity=".22"/>
+  <!-- stand -->
+  <rect x="146" y="432" width="8" height="132" fill="#cfcfca"/>
+  <path d="M150 560 L90 604 M150 560 L210 604 M150 560 L150 608" fill="none" stroke="#cfcfca" stroke-width="6" stroke-linecap="round"/>
+  <!-- the dress form -->
+  <circle cx="150" cy="30" r="11" fill="#cfcfca"/>
+  <rect x="142" y="38" width="16" height="44" fill="#cfcfca"/>
+  <path id="mqBody" d="M142 78 C118 82 88 92 66 112 C58 120 60 130 70 138 C80 146 84 158 80 174 C76 192 74 206 84 228 C92 246 98 258 98 272 C98 298 76 324 68 354 C64 374 70 394 84 410 C100 426 126 432 150 432 C174 432 200 426 216 410 C230 394 236 374 232 354 C224 324 202 298 202 272 C202 258 208 246 216 228 C226 206 224 192 220 174 C216 158 220 146 230 138 C240 130 242 120 234 112 C212 92 182 82 158 78 Z" fill="url(#mqdots)" stroke="#0b0b0b" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M98 272 C130 282 170 282 202 272" fill="none" stroke="#0b0b0b" stroke-width="2.2"/>
+  <!-- clothes (shown one by one by the script) -->
+  <g id="p-dress-red" hidden><path d="M136 80 C118 84 94 94 74 112 C66 120 68 130 76 138 C84 146 88 158 84 174 C80 192 78 206 88 228 C96 246 102 258 102 272 C102 298 80 324 72 354 C60 448 35 530 26 588 L274 588 C265 530 240 448 228 354 C220 324 198 298 198 272 C198 258 204 246 212 228 C222 206 220 192 216 174 C212 158 216 146 224 138 C232 130 234 120 226 112 C206 94 182 84 164 80 C158 96 142 96 136 80 Z" fill="#b3141f" stroke="#0b0b0b" stroke-width="2"/><path d="M102 272 C130 282 170 282 198 272 M138 290 C128 400 100 500 76 580 M162 290 C172 400 200 500 224 580 M150 292 L150 584" fill="none" stroke="#6b0b13" stroke-width="2" opacity=".55"/></g>
+  <g id="p-dress-white" hidden><use href="#whiteShape" fill="#f6f6f3" stroke="#0b0b0b" stroke-width="2"/>
+    <g id="p-spray" clip-path="url(#clipWhite)" hidden><path d="M20 330 C100 380 200 300 280 360" fill="none" stroke="#0b0b0b" stroke-width="28" stroke-linecap="round"/><path d="M20 424 C110 462 200 380 282 446" fill="none" stroke="#ffd400" stroke-width="26" stroke-linecap="round"/><path d="M90 140 C140 196 180 130 214 204" fill="none" stroke="#0b0b0b" stroke-width="16" stroke-linecap="round"/><path d="M80 222 C140 270 192 214 224 278" fill="none" stroke="#ffd400" stroke-width="14" stroke-linecap="round"/></g>
+    <path d="M102 272 C130 282 170 282 198 272" fill="none" stroke="#0b0b0b" stroke-width="1.5"/></g>
+  <g id="p-dress-green" hidden><path d="M136 80 C118 84 94 94 74 112 C66 120 68 130 76 138 C84 146 88 158 84 174 C80 192 78 206 88 228 C96 246 102 258 102 272 C102 298 80 324 72 354 C62 448 38 530 30 588 L270 588 C262 530 238 448 228 354 C220 324 198 298 198 272 C198 258 204 246 212 228 C222 206 220 192 216 174 C212 158 216 146 224 138 C232 130 234 120 226 112 C206 94 182 84 164 80 L150 206 L136 80 Z" fill="url(#jungle)" stroke="#0b0b0b" stroke-width="2"/><path d="M150 206 C156 330 190 470 238 586" fill="none" stroke="#0b0b0b" stroke-width="1.4" opacity=".6"/></g>
+  <g id="p-shirt" hidden><path d="M136 80 C118 84 90 94 70 112 C62 120 64 130 72 138 C82 148 86 160 82 176 C78 194 76 208 88 232 C92 250 94 266 90 300 C86 330 80 360 70 392 L230 392 C220 360 214 330 210 300 C206 266 208 250 212 232 C224 208 222 194 218 176 C214 160 218 148 228 138 C236 130 238 120 230 112 C210 94 182 84 164 80 L150 124 Z" fill="url(#satin)" stroke="#0b0b0b" stroke-width="2"/><path d="M136 80 L150 124 L164 80 L178 84 L150 140 L122 84 Z" fill="#f4eedf" stroke="#0b0b0b" stroke-width="1.5"/><path d="M150 140 L150 392" stroke="#0b0b0b" stroke-width="1.2" opacity=".5"/></g>
+  <g id="p-bra" hidden><use href="#coneL"/><use href="#coneL" transform="translate(300 0) scale(-1 1)"/><path d="M118 80 L110 160 M182 80 L190 160" stroke="#b8923a" stroke-width="2.5" fill="none"/></g>
+  <g id="p-jacket" hidden><path d="M136 78 C112 82 74 92 54 114 L40 214 L68 222 L82 180 C82 230 92 272 94 300 C84 340 76 376 70 410 L230 410 C224 376 216 340 206 300 C208 272 218 230 218 180 L232 222 L260 214 L246 114 C226 92 188 82 164 78 L150 330 Z" fill="url(#velvet)" stroke="#0b0b0b" stroke-width="2"/><path d="M136 78 L150 190 L120 330 M164 78 L150 190 L180 330" fill="none" stroke="#0b0b0b" stroke-width="1.6"/><circle cx="150" cy="260" r="3.5" fill="#d8b45a"/><circle cx="150" cy="320" r="3.5" fill="#d8b45a"/></g>
+  <g id="p-plaid" hidden><path d="M142 78 C112 82 78 92 56 114 L40 190 L66 198 L84 174 C84 220 94 262 98 290 C80 330 68 370 66 412 L234 412 C232 370 220 330 202 290 C206 262 216 220 216 174 L234 198 L260 190 L244 114 C222 92 188 82 158 78 L150 118 Z" fill="url(#plaid)" stroke="#0b0b0b" stroke-width="2"/><path d="M150 118 L150 412" stroke="#0b0b0b" stroke-width="1.5"/><path d="M142 78 L150 118 L158 78" fill="none" stroke="#0b0b0b" stroke-width="1.5"/></g>
+  <g id="p-vest" hidden><path d="M138 80 C116 84 92 96 78 114 C84 150 84 190 90 232 C94 262 96 290 88 340 L212 340 C204 290 206 262 210 232 C216 190 216 150 222 114 C208 96 184 84 162 80 L150 104 Z" fill="#151515" stroke="#0b0b0b" stroke-width="2"/><path d="M150 104 L150 340" stroke="#9a9a96" stroke-width="2"/><path d="M104 280 H134 V316 H104 Z" fill="none" stroke="#9a9a96" stroke-width="1.5"/><path d="M138 80 L150 104 L162 80" fill="none" stroke="#9a9a96" stroke-width="1.5"/></g>
+</svg>
+          </div>
+          <div class="mq-side">
+            <div class="mq-bar" role="group" aria-label="Actions">
+              <button type="button" id="mqSurprise" class="mq-act">Surprise me</button>
+              <button type="button" id="mqClear" class="mq-act">Undress</button>
+              <button type="button" id="mqSpray" class="mq-act" hidden aria-pressed="false">Send in the robots</button>
+            </div>
+            <h2 class="mq-h">The wardrobe</h2>
+            <ul class="mq-list">
+          <li><button type="button" class="mq-piece" aria-pressed="false" data-id="dress-red" data-slot="dress" data-name="The red gown" data-show="Valentino, Spring/Summer 2008" data-note="Forty-five years of couture end with a runway full of red." data-href="runway-valentino-2008.html">
+            <span class="mq-sw" style="background:#b3141f" aria-hidden="true"></span>
+            <span class="mq-t"><span class="mq-k">Gown</span><span class="mq-n">The red gown</span><span class="mq-s">Valentino, Spring/Summer 2008</span></span>
+            <span class="mq-state" aria-hidden="true">Put on</span>
+          </button></li>
+          <li><button type="button" class="mq-piece" aria-pressed="false" data-id="dress-white" data-slot="dress" data-name="The white dress" data-show="McQueen, No. 13" data-note="Two robots, a white dress and a ballerina: fashion as performance." data-href="runway-mcqueen-1999.html">
+            <span class="mq-sw" style="background:#f6f6f3" aria-hidden="true"></span>
+            <span class="mq-t"><span class="mq-k">Dress</span><span class="mq-n">The white dress</span><span class="mq-s">McQueen, No. 13</span></span>
+            <span class="mq-state" aria-hidden="true">Put on</span>
+          </button></li>
+          <li><button type="button" class="mq-piece" aria-pressed="false" data-id="dress-green" data-slot="dress" data-name="The jungle dress" data-show="Versace, Spring/Summer 2000" data-note="A green chiffon dress that became one of the most famous of all time." data-href="runway-versace-2000.html">
+            <span class="mq-sw" style="background:#1f7a4d" aria-hidden="true"></span>
+            <span class="mq-t"><span class="mq-k">Gown</span><span class="mq-n">The jungle dress</span><span class="mq-s">Versace, Spring/Summer 2000</span></span>
+            <span class="mq-state" aria-hidden="true">Put on</span>
+          </button></li>
+          <li><button type="button" class="mq-piece" aria-pressed="false" data-id="shirt" data-slot="top" data-name="The satin shirt" data-show="Gucci, Fall/Winter 1995" data-note="Velvet trousers, satin shirts and the show that saved Gucci." data-href="runway-gucci-1995.html">
+            <span class="mq-sw" style="background:#cfc7b6" aria-hidden="true"></span>
+            <span class="mq-t"><span class="mq-k">Top</span><span class="mq-n">The satin shirt</span><span class="mq-s">Gucci, Fall/Winter 1995</span></span>
+            <span class="mq-state" aria-hidden="true">Put on</span>
+          </button></li>
+          <li><button type="button" class="mq-piece" aria-pressed="false" data-id="bra" data-slot="top" data-name="The cone bra" data-show="Jean Paul Gaultier" data-note="Creates the cone-shaped bra for Madonna’s Blond Ambition tour and publishes his autobiography." data-href="designer-gaultier.html">
+            <span class="mq-sw" style="background:#d8b45a" aria-hidden="true"></span>
+            <span class="mq-t"><span class="mq-k">Top</span><span class="mq-n">The cone bra</span><span class="mq-s">Jean Paul Gaultier</span></span>
+            <span class="mq-state" aria-hidden="true">Put on</span>
+          </button></li>
+          <li><button type="button" class="mq-piece" aria-pressed="false" data-id="jacket" data-slot="outer" data-name="The velvet jacket" data-show="Gucci, Fall/Winter 1995" data-note="Velvet trousers, satin shirts and the show that saved Gucci." data-href="runway-gucci-1995.html">
+            <span class="mq-sw" style="background:#3b1233" aria-hidden="true"></span>
+            <span class="mq-t"><span class="mq-k">Layer</span><span class="mq-n">The velvet jacket</span><span class="mq-s">Gucci, Fall/Winter 1995</span></span>
+            <span class="mq-state" aria-hidden="true">Put on</span>
+          </button></li>
+          <li><button type="button" class="mq-piece" aria-pressed="false" data-id="plaid" data-slot="outer" data-name="The plaid shirt" data-show="Perry Ellis, Spring/Summer 1993" data-note="Doc Martens, plaid and chiffon: the show that got a designer fired." data-href="runway-perry-ellis-1993.html">
+            <span class="mq-sw" style="background:#b3141f" aria-hidden="true"></span>
+            <span class="mq-t"><span class="mq-k">Layer</span><span class="mq-n">The plaid shirt</span><span class="mq-s">Perry Ellis, Spring/Summer 1993</span></span>
+            <span class="mq-state" aria-hidden="true">Put on</span>
+          </button></li>
+          <li><button type="button" class="mq-piece" aria-pressed="false" data-id="vest" data-slot="outer" data-name="The nylon vest" data-show="Miuccia Prada" data-note="Uses the nylon from her backpacks for jackets, vests, dresses and skirts." data-href="designer-prada.html">
+            <span class="mq-sw" style="background:#151515" aria-hidden="true"></span>
+            <span class="mq-t"><span class="mq-k">Layer</span><span class="mq-n">The nylon vest</span><span class="mq-s">Miuccia Prada</span></span>
+            <span class="mq-state" aria-hidden="true">Put on</span>
+          </button></li>
+            </ul>
+            <div class="mq-info" id="mqInfo" aria-live="polite">
+              <p class="mq-look" id="mqLook">Your look: nothing yet.</p>
+              <p class="mq-note" id="mqNote">Choose a piece to learn where it comes from.</p>
+              <figure class="mq-photo" id="mqPhoto" hidden><img id="mqPhotoImg" alt="" width="320"><figcaption id="mqPhotoCap"></figcaption></figure>
+            </div>
+          </div>
+        </div>
+        <noscript><p>This page needs JavaScript to dress the mannequin. You can still read about every show on the <a href="runways.html">Runways</a> page.</p></noscript>
+      </div>
     </div>
   </main>
   <footer class="site-footer" id="site-footer"></footer>
