@@ -10,24 +10,35 @@ A virtual museum where fashion students and enthusiasts explore the designers, r
 
 ## Tech (kept deliberately simple)
 - Plain HTML, CSS and JavaScript. No frameworks, no build step.
-- Content stored in JSON files (designers, runways, models, pieces) and rendered with JavaScript.
+- Content is written directly in HTML pages (one page per designer, runway show and model). A small JavaScript file builds the shared header and footer, and will power search.
 - Hosted free on GitHub Pages.
 
 ## Design direction
-90s editorial / magazine style. Black, off-white paper, one red accent. Fonts: Bodoni Moda, Anton, Space Mono (Google Fonts).
+90s editorial / magazine style. Black and grey with off-white paper, film grain. Fonts: Bodoni Moda, Anton, Space Mono (Google Fonts).
 
 ## Scope
-- 9 designers, 7 runway shows, 9 models, ~12 mannequin pieces
-- Deep pages: Valentino, McQueen (designers), Naomi Campbell, Kate Moss (models)
+- 9 designers, 9 runway shows (one per designer), 9 models linked to the designers' shows, a timeline, a Mannequin Room and a search page.
 
 ## Accessibility
 Semantic HTML, keyboard navigation, visible focus, alt text, WCAG AA contrast, prefers-reduced-motion support.
 
-## AI assistance disclosure
-Planned and built together with Claude (Anthropic). Student made the project decisions and reviews all code. (Add your own notes on what you learned/changed.)
+## AI assistance disclosure (honest account of who did what)
+I used Claude (Anthropic) throughout this project. This is what each of us did.
+
+| Part | Claude | Me |
+|---|---|---|
+| Idea, topic, audience | Suggested options | Chose the fashion museum, the era (1990-2009), the designers and models, and the 90s editorial direction |
+| Design | Built the page layouts and the 3D openable magazine, and tried several versions | Compared the versions, chose the final one, asked for changes (simpler cover, one mannequin, grey/black colors, cleaner top bar) |
+| Code | Wrote the HTML, CSS and JavaScript | Uploaded and tested the files, and reviewed how they work |
+| Text and facts | Researched sources and wrote first drafts in original words | Chose the subjects, reviewed the text, and (to do) edit it in my own words |
+| Photos and credits | Does not download or add photos of people | (to do) Add licensed photos and credit them in SOURCES.md |
+| Testing | Ran automated checks (layout, links, keyboard) | (to do) Test on my own devices and fill in TESTING.md |
+
+(to do: add a few sentences about what I learned.)
 
 ## Decision log
 - 2026-11-16: Switched from meditation to fashion museum. Chose plain HTML/CSS/JS + GitHub Pages. Chose 90s editorial style.
+- 2026-11-17: Restarted the repository to keep it clean. Chose one runway show per designer, and models who are linked to those designers' shows. Decided the black scrolling strip at the top made the page messy, so it was removed.
 
 ## Design iteration log (evidence of planning and iteration)
 The home page went through several versions. Each one is saved in the repository history/branches.

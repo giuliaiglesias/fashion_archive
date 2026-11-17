@@ -41,20 +41,11 @@ function buildFooter() {
     </div>`;
 }
 
-function buildTicker() {
-  const words = ["Valentino","Versace","McQueen","Galliano","Tom Ford","Gaultier","Lagerfeld","Helmut Lang","Calvin Klein","Naomi","Kate","Gisele","Adriana","Doutzen"];
-  const row = words.map(w => `<span>${w}</span>`).join("");
-  // repeated twice so the scroll loops seamlessly
-  return `<div class="ticker-track" aria-hidden="true">${row}${row}</div>`;
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   const header = document.getElementById("site-header");
   const footer = document.getElementById("site-footer");
-  const ticker = document.getElementById("ticker");
   if (header) header.innerHTML = buildHeader();
   if (footer) footer.innerHTML = buildFooter();
-  if (ticker) ticker.innerHTML = buildTicker();
 });
 
 /* ==========================================================

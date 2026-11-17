@@ -5,7 +5,7 @@ A virtual fashion museum for students and enthusiasts to explore the designers, 
 **Live site:** https://giuliaiglesias.github.io/fashion_archive/ (after GitHub Pages is enabled)
 
 ## Built with
-Plain HTML, CSS and JavaScript (no frameworks). Content lives in JSON files in `/data` and is rendered by JavaScript.
+Plain HTML, CSS and JavaScript (no frameworks). Each designer, runway show and model has its own HTML page.
 
 ## Project files
 - `PROJECT_MEMORY.md`: decisions and changes from the original proposal

@@ -66,18 +66,11 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1; margin: 0; }
 }
 .nav a:hover, .nav a[aria-current="page"] { border-bottom-color: var(--red); }
 
-/* ---------- Marquee ticker ---------- */
-.ticker { background: var(--ink); color: var(--paper); overflow: hidden; white-space: nowrap; }
-.ticker-track { display: inline-block; padding: .5rem 0; animation: scroll 40s linear infinite; }
-.ticker span { margin-right: 2.5rem; font-family: var(--font-shout); letter-spacing: .08em; text-transform: uppercase; }
-.ticker span::after { content: "\2605"; color: #9a9a96; margin-left: 2.5rem; }
-@keyframes scroll { to { transform: translateX(-50%); } }
-
 /* ---------- Cover (home) ---------- */
 .cover { padding: clamp(1.5rem, 4vw, 3rem) 0 4rem; position: relative; }
 .cover-meta {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem;
-  border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); padding: .5rem 0;
+  border-bottom: 1px solid var(--ink); padding: .5rem 0;
 }
 .masthead {
   font-weight: 900; font-size: clamp(3.5rem, 15vw, 12.5rem);
@@ -193,7 +186,6 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1; margin: 0; }
 /* ---------- Respect reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .ticker-track { animation: none; }
 }
 
 /* Film grain over the whole page: a static generated noise image that ignores clicks */
@@ -201,3 +193,29 @@ body::after {
   content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: .13;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
+
+/* ---------- Cards (Designers, Runways, Models listings) ---------- */
+.lede { max-width: 60ch; margin: 0 0 2rem; }
+.card-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+.card { display: block; height: 100%; background: var(--paper-light); border: 1px solid var(--ink); padding: 1.25rem; text-decoration: none; }
+.card h2 { font-size: 1.8rem; margin: .6rem 0; }
+.card p { margin: 0; font-size: .9rem; }
+.card-tag { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; }
+.card:hover, .card:focus-visible { background: var(--ink); color: var(--paper-light); }
+
+/* ---------- Profile pages (one designer / show / model) ---------- */
+.back { margin: 0 0 2rem; font-size: .85rem; }
+.profile { display: grid; gap: 2.5rem; grid-template-columns: 1fr; }
+@media (min-width: 860px) { .profile { grid-template-columns: 300px 1fr; } }
+.facts { align-self: start; background: var(--paper-light); border: 1px solid var(--ink); padding: 1.25rem; }
+.facts h2, .profile-text h2 { font-size: 1.6rem; font-style: italic; margin: 0 0 .75rem; }
+.facts dl { margin: 0; }
+.facts dt { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--grey); margin-top: .9rem; }
+.facts dd { margin: .1rem 0 0; }
+.profile-text { max-width: 64ch; }
+.profile-text h2:not(:first-child) { margin-top: 2.25rem; }
+.profile-text p { margin: 0 0 1rem; }
+.src-list { padding-left: 1.2rem; font-size: .85rem; }
+.src-list li { margin-bottom: .4rem; overflow-wrap: anywhere; }
+.note { font-size: .8rem; color: var(--grey); }
+.pager { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--ink); font-size: .85rem; }
