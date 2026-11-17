@@ -141,3 +141,14 @@ function initMagazine() {
   }
 }
 document.addEventListener("DOMContentLoaded", initMagazine);
+
+
+// Photo slots: show a photo only if the file exists; otherwise keep the dotted placeholder.
+document.querySelectorAll(".photo-slot").forEach(function (slot) {
+  var img = slot.querySelector("img");
+  if (!img) return;
+  function ok() { slot.classList.add("has-photo"); }
+  img.addEventListener("load", ok);
+  img.addEventListener("error", function () { img.remove(); });
+  if (img.complete) { if (img.naturalWidth) ok(); else img.remove(); }
+});

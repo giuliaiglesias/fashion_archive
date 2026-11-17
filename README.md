@@ -13,4 +13,4 @@ Plain HTML, CSS and JavaScript (no frameworks). Each designer, runway show and m
 - `TESTING.md`: test checklist and results
 
 ## Status
-In progress. Done: Designers (9) and Runways (9). Still to build: Models, Timeline, Mannequin Room, Search.
+In progress. Done: Designers (9), Runways (9) and Models (9). Still to build: Timeline, Mannequin Room, Search, photos and videos.
