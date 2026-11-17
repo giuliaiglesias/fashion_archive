@@ -152,3 +152,114 @@ document.querySelectorAll(".photo-slot").forEach(function (slot) {
   img.addEventListener("error", function () { img.remove(); });
   if (img.complete) { if (img.naturalWidth) ok(); else img.remove(); }
 });
+
+/* ==========================================================
+   TIMELINE (timeline.html)
+   Without JavaScript the page is a plain list of every year.
+   With JavaScript it becomes an interactive scrubber: one year
+   at a time, filter buttons, previous/next and arrow keys.
+   ========================================================== */
+function initTimeline() {
+  const root = document.getElementById("tl-root");
+  if (!root) return;
+  const sections = Array.from(root.querySelectorAll(".tl-year"));
+  const years = sections.map(s => +s.id.slice(1));
+  const all = Array.from({ length: 20 }, (_, i) => 1990 + i);
+  const kinds = { runway: true, designer: true, model: true };
+  let current = null;
+
+  root.classList.add("tl-js");
+  // hide the plain decade headings; the scrubber replaces them
+  root.querySelectorAll(".tl-decade").forEach(h => h.hidden = true);
+
+  const ui = document.createElement("div");
+  ui.className = "tl-ui";
+  ui.innerHTML = `
+    <div class="tl-filters" role="group" aria-label="Show only">
+      <button type="button" class="tl-f" data-k="runway" aria-pressed="true">Runways</button>
+      <button type="button" class="tl-f" data-k="designer" aria-pressed="true">Designers</button>
+      <button type="button" class="tl-f" data-k="model" aria-pressed="true">Models</button>
+    </div>
+    <div class="tl-scrub" role="group" aria-label="Choose a year"></div>
+    <div class="tl-nav">
+      <button type="button" id="tlPrev">&larr; Previous year</button>
+      <span class="tl-big" id="tlBig" aria-hidden="true"></span>
+      <button type="button" id="tlNext">Next year &rarr;</button>
+    </div>
+    <p class="sr-only" id="tlLive" role="status" aria-live="polite"></p>`;
+  root.insertBefore(ui, root.firstChild);
+  const scrub = ui.querySelector(".tl-scrub");
+  const live = ui.querySelector("#tlLive");
+  const big = ui.querySelector("#tlBig");
+
+  function count(y) {
+    const s = document.getElementById("y" + y);
+    if (!s) return 0;
+    return Array.from(s.querySelectorAll("li")).filter(li => kinds[li.dataset.k]).length;
+  }
+
+  all.forEach(y => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "tl-tick"; b.dataset.y = y;
+    b.innerHTML = `<span class="tl-bar" aria-hidden="true"></span><span class="tl-yy">${y % 10 === 0 || y === 1995 || y === 2005 ? y : "’" + String(y).slice(2)}</span>`;
+    b.addEventListener("click", () => show(y, true));
+    scrub.appendChild(b);
+  });
+
+  function paintBars() {
+    const max = Math.max(1, ...all.map(count));
+    scrub.querySelectorAll(".tl-tick").forEach(b => {
+      const y = +b.dataset.y, n = count(y);
+      b.querySelector(".tl-bar").style.height = (6 + (n / max) * 54) + "px";
+      b.setAttribute("aria-label", y + ", " + n + (n === 1 ? " event" : " events"));
+    });
+  }
+
+  function show(y, focus) {
+    y = Math.max(1990, Math.min(2009, y));
+    current = y;
+    sections.forEach(s => s.hidden = (s.id !== "y" + y));
+    scrub.querySelectorAll(".tl-tick").forEach(b => {
+      const on = +b.dataset.y === y;
+      b.classList.toggle("on", on);
+      if (on) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current");
+    });
+    // hide filtered-out items inside the year, and show a note if none are left
+    const s = document.getElementById("y" + y);
+    let n = 0;
+    if (s) {
+      s.querySelectorAll("li").forEach(li => { const on = kinds[li.dataset.k]; li.hidden = !on; if (on) n++; });
+    }
+    let empty = root.querySelector(".tl-empty");
+    if (!empty) { empty = document.createElement("p"); empty.className = "tl-empty"; root.appendChild(empty); }
+    empty.hidden = n > 0;
+    empty.textContent = s ? "Nothing to show for " + y + " with these filters." : "Nothing recorded for " + y + " in this museum yet.";
+    big.textContent = y;
+    ui.querySelector("#tlPrev").disabled = y === 1990;
+    ui.querySelector("#tlNext").disabled = y === 2009;
+    live.textContent = y + ": " + n + (n === 1 ? " event" : " events");
+    try { history.replaceState(null, "", "#y" + y); } catch (e) {}
+  }
+
+  ui.querySelector("#tlPrev").addEventListener("click", () => show(current - 1));
+  ui.querySelector("#tlNext").addEventListener("click", () => show(current + 1));
+  ui.querySelectorAll(".tl-f").forEach(b => b.addEventListener("click", () => {
+    const k = b.dataset.k;
+    kinds[k] = !kinds[k];
+    b.setAttribute("aria-pressed", String(kinds[k]));
+    paintBars(); show(current);
+  }));
+  // arrow keys move between years while a timeline control has focus
+  ui.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+      e.preventDefault();
+      show(current + (e.key === "ArrowRight" ? 1 : -1));
+      const t = scrub.querySelector(".tl-tick.on"); if (t && e.target.classList.contains("tl-tick")) t.focus();
+    }
+  });
+
+  paintBars();
+  const h = /^#y(\d{4})$/.exec(location.hash);
+  show(h ? +h[1] : 1990);
+}
+document.addEventListener("DOMContentLoaded", initTimeline);
