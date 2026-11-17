@@ -294,7 +294,7 @@ function initMannequin() {
   function describe(extra) {
     const names = Object.values(worn).map(b => b.dataset.name.toLowerCase());
     look.textContent = names.length ? "Your look: " + names.join(", ") + "." : "Your look: nothing yet.";
-    svg.setAttribute("aria-label", names.length ? "A grey dress form wearing " + names.join(", ") : "A grey dress form, wearing nothing yet");
+    svg.setAttribute("aria-label", names.length ? "A grey mannequin wearing " + names.join(", ") : "A grey mannequin, wearing nothing yet");
     if (extra) { note.innerHTML = ""; note.append(extra); }
     updateSpray();
   }
@@ -371,6 +371,15 @@ function initMannequin() {
     describe();
     note.textContent = "A surprise look. Choose any piece to read its story.";
   });
+  // zoom: three views, by changing which part of the drawing is visible
+  const VIEWS = ["0 0 300 700", "40 30 220 400", "70 60 160 200"];
+  let zoom = 0;
+  function setZoom(z) { zoom = Math.max(0, Math.min(VIEWS.length - 1, z)); svg.setAttribute("viewBox", VIEWS[zoom]);
+    document.getElementById("mqOut").disabled = zoom === 0; document.getElementById("mqIn").disabled = zoom === VIEWS.length - 1; }
+  document.getElementById("mqIn").addEventListener("click", () => setZoom(zoom + 1));
+  document.getElementById("mqOut").addEventListener("click", () => setZoom(zoom - 1));
+  document.getElementById("mqFull").addEventListener("click", () => setZoom(0));
+  setZoom(0);
   describe();
 }
 document.addEventListener("DOMContentLoaded", initMannequin);
