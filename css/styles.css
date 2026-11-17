@@ -1,0 +1,203 @@
+/* ==========================================================
+   ARCHIVE - design system
+   Tokens first (colors, fonts, spacing), then base, then components.
+   Change a token here and the whole site updates.
+   ========================================================== */
+:root {
+  --ink: #0b0b0b;          /* near-black text */
+  --paper: #e8e8e5;        /* soft grey magazine paper */
+  --paper-dark: #d6d6d2;
+  --paper-light: #f6f6f3;  /* page white (magazine pages) */
+  --red: #111111;          /* accent = black now (kept the variable name so nothing else changes) */
+  --accent-dark-bg: #e8e8e5; /* accent colour on black areas */
+  --grey: #4a4a4a;         /* secondary text, AA on paper */
+
+  --font-display: "Bodoni Moda", "Didot", Georgia, serif;
+  --font-shout: "Anton", "Impact", sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --max: 1200px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* Visible keyboard focus everywhere (accessibility) */
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; background: var(--paper-dark); }
+
+.skip-link {
+  position: absolute; left: -999px; top: 0;
+  background: var(--ink); color: var(--paper); padding: .75rem 1rem; z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* ---------- Typography ---------- */
+h1, h2, h3 { font-family: var(--font-display); line-height: 1; margin: 0; }
+.shout { font-family: var(--font-shout); text-transform: uppercase; letter-spacing: .02em; }
+.label {
+  font-family: var(--font-mono); font-size: .75rem; text-transform: uppercase;
+  letter-spacing: .15em;
+}
+
+/* ---------- Header / nav ---------- */
+.site-header { border-bottom: 3px solid var(--ink); }
+.site-header .wrap {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: .75rem 2rem; padding-top: 1rem; padding-bottom: 1rem;
+}
+.logo { font-family: var(--font-display); font-weight: 900; font-size: 1.75rem; text-decoration: none; letter-spacing: .05em; }
+.nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; margin: 0; padding: 0; }
+.nav a {
+  font-size: .8rem; text-transform: uppercase; letter-spacing: .12em;
+  text-decoration: none; padding: .4rem 0; border-bottom: 2px solid transparent;
+}
+.nav a:hover, .nav a[aria-current="page"] { border-bottom-color: var(--red); }
+
+/* ---------- Marquee ticker ---------- */
+.ticker { background: var(--ink); color: var(--paper); overflow: hidden; white-space: nowrap; }
+.ticker-track { display: inline-block; padding: .5rem 0; animation: scroll 40s linear infinite; }
+.ticker span { margin-right: 2.5rem; font-family: var(--font-shout); letter-spacing: .08em; text-transform: uppercase; }
+.ticker span::after { content: "\2605"; color: #9a9a96; margin-left: 2.5rem; }
+@keyframes scroll { to { transform: translateX(-50%); } }
+
+/* ---------- Cover (home) ---------- */
+.cover { padding: clamp(1.5rem, 4vw, 3rem) 0 4rem; position: relative; }
+.cover-meta {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem;
+  border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); padding: .5rem 0;
+}
+.masthead {
+  font-weight: 900; font-size: clamp(3.5rem, 15vw, 12.5rem);
+  letter-spacing: -.02em; text-align: center; margin: 1rem 0 .5rem; overflow-wrap: normal;
+}
+.masthead em { font-style: italic; font-weight: 400; }
+.cover-tagline {
+  font-family: var(--font-display); font-style: italic; text-align: center;
+  font-size: clamp(1.1rem, 2.5vw, 1.75rem); margin: 0 auto 3rem; max-width: 40ch;
+}
+/* ---------- The openable magazine ---------- */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.stage { margin-top: 2.5rem; padding: 1rem 0 4rem; overflow-x: clip; perspective: 1800px; text-align: center; }
+.stage-hint { margin: 0 0 2rem; }
+
+.book {
+  --w: min(360px, calc(100vw - 2rem));
+  position: relative; width: var(--w); aspect-ratio: 3 / 4.1; margin: 0 auto; text-align: left;
+  transform-style: preserve-3d;
+  transform: translateX(var(--shift, 0)) rotateX(var(--rx, 4deg)) rotateY(var(--ry, -14deg));
+  transition: transform 1s cubic-bezier(.6, 0, .2, 1);
+}
+@media (min-width: 760px) {
+  .book { --w: clamp(280px, calc((100vw - 3rem) / 2.1), 380px); }
+  .book.open { --shift: calc(var(--w) / 2); }   /* slide right so the open spread is centred */
+}
+.book.open { --rx: 0deg; --ry: 0deg; }
+
+/* RIGHT PAGE = the menu */
+.right-page {
+  position: absolute; inset: 0; background: var(--paper-light); padding: 6% 7%; container-type: size;
+  box-shadow: inset 16px 0 20px -16px rgba(0,0,0,.4), 0 0 0 1px rgba(0,0,0,.14), 0 18px 30px -18px rgba(0,0,0,.45); overflow: hidden;
+}
+.book::after {   /* stack of page edges on the right side */
+  content: ""; position: absolute; top: 4px; bottom: 4px; right: -7px; width: 7px; z-index: -1;
+  background: repeating-linear-gradient(0deg, #f4f4f0 0 1px, #c9c9c4 1px 2px);
+}
+.book-shadow { position: absolute; left: 6%; right: -4%; bottom: -2.2rem; height: 34px; background: radial-gradient(closest-side, rgba(0,0,0,.45), transparent); filter: blur(8px); z-index: -2; }
+
+.pg-head { display: flex; justify-content: space-between; font-size: 3cqw; letter-spacing: .2em; text-transform: uppercase; border-bottom: 1px solid var(--ink); padding-bottom: 2cqw; }
+.pg-title { font-size: 10cqw; font-style: italic; margin: 3cqw 0 1.5cqw; }
+.toc { list-style: none; margin: 0; padding: 0; }
+.toc li { border-bottom: 1px solid #0003; }
+.toc a { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 3cqw; padding: 2.2cqw 1cqw; text-decoration: none; }
+.toc-title { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: 7cqw; line-height: 1; display: block; }
+.toc-desc { font-size: 3.4cqw; color: var(--grey); display: block; }
+.toc-pg { font-family: var(--font-display); font-size: 5.5cqw; }
+.toc a:hover, .toc a:focus-visible { background: var(--ink); color: var(--paper-light); }
+.toc a:hover .toc-desc, .toc a:focus-visible .toc-desc { color: var(--paper); }
+.close-btn { position: absolute; left: 7%; bottom: 4%; background: none; border: 0; border-bottom: 1px solid var(--ink); font: inherit; font-size: 3.2cqw; text-transform: uppercase; letter-spacing: .18em; cursor: pointer; padding: .2rem 0; }
+
+/* COVER (hinged on its left edge) */
+.cover-wrap { position: absolute; inset: 0; transform-origin: left center; transform-style: preserve-3d; transition: transform 1s cubic-bezier(.6, 0, .2, 1); z-index: 2; }
+.book.open .cover-wrap { transform: rotateY(-179deg); }
+.cover-front, .cover-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; container-type: inline-size; overflow: hidden; }
+
+.cover-front {
+  display: flex; flex-direction: column; justify-content: flex-start; width: 100%; height: 100%; border: 0; margin: 0; padding: 1rem; text-align: left; cursor: pointer;
+  font: inherit; color: var(--paper); background: #0b0b0b; transform: translateZ(.5px);
+  border-left: 5px solid #000; box-shadow: inset 8px 0 14px -8px #fff3;
+}
+.cover-front > span { display: block; flex: none; }
+.cover-front:focus-visible { outline: 4px solid var(--ink); outline-offset: 6px; background: #0b0b0b; }
+.cf-photo { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity .4s; }
+.has-photo .cf-photo { opacity: 1; }
+.cf-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.65), transparent 28%, transparent 55%, rgba(0,0,0,.75)); }
+.has-photo .mf-form { display: none; }
+.cover-front > .cf-shade { display: none; }
+.has-photo .cover-front > .cf-shade { display: block; }
+
+/* Cover colours are variables, so a cover can be dark or light */
+.cover-front { --cv-bg: #0b0b0b; --cv-fg: #f6f6f3; }
+.book.cover-light .cover-front { --cv-bg: #f6f6f3; --cv-fg: #0b0b0b; box-shadow: inset 8px 0 14px -8px #0003; border-left-color: #bdbdb8; }
+.cover-front { background: var(--cv-bg); color: var(--cv-fg); }
+
+.mf-top { display: flex !important; justify-content: space-between; font-size: 2.3cqw; letter-spacing: .22em; text-transform: uppercase; position: relative; z-index: 2; }
+.mf-masthead { font-family: var(--font-display); font-weight: 900; font-size: 19cqw; line-height: .82; letter-spacing: -.025em; text-align: center; margin-top: 5cqw; position: relative; z-index: 1; }
+
+/* one clean dress form, standing in front of the bottom of the masthead */
+.mf-form { position: absolute; left: 50%; top: 15%; height: 62%; transform: translateX(-50%); z-index: 2; }
+
+.mf-tag { position: absolute !important; left: 0; right: 0; bottom: 14cqw; text-align: center; font-family: var(--font-display); font-style: italic; font-size: 6.4cqw; z-index: 3; }
+.mf-lines { position: absolute !important; left: 5cqw; bottom: 14cqw; display: grid !important; gap: 1.4cqw; z-index: 3; }
+.mf-lines > span { font-size: 2.6cqw; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; }
+.mf-lines em { font-style: normal; font-weight: 400; letter-spacing: .08em; opacity: .85; margin-left: 1cqw; text-transform: none; }
+
+.mf-bottom { position: absolute !important; left: 5cqw; right: 5cqw; bottom: 4cqw; display: flex !important; justify-content: space-between; align-items: flex-end; font-size: 2.2cqw; letter-spacing: .15em; text-transform: uppercase; z-index: 3; }
+.barcode { width: 20cqw; height: 7.5cqw; background: repeating-linear-gradient(90deg, #111 0 2px, #fff 2px 4px, #111 4px 5px, #fff 5px 8px, #111 8px 11px, #fff 11px 13px); border: 3px solid #fff; }
+.mf-gloss { position: absolute; inset: 0; background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.10) 49%, transparent 60%); pointer-events: none; z-index: 5; }
+
+.cover-back { transform: rotateY(180deg) translateZ(.5px); background: var(--paper-light); color: var(--ink); padding: 7%; box-shadow: inset -16px 0 20px -16px rgba(0,0,0,.4), 0 0 0 1px rgba(0,0,0,.14), 0 18px 30px -18px rgba(0,0,0,.45); }
+.cb-photo { display: none; aspect-ratio: 4 / 3; background-size: cover; background-position: center; margin-bottom: 2cqw; }
+.has-inside .cb-photo { display: block; }
+.cb-credit { font-size: 2.8cqw; color: var(--grey); margin: 0 0 4cqw; }
+.cover-back h3 { font-size: 8cqw; font-style: italic; margin-bottom: 3cqw; }
+.cover-back p { font-size: 3.6cqw; line-height: 1.55; margin: 0 0 3cqw; }
+.cover-back .cb-sign { font-family: var(--font-display); font-style: italic; font-size: 5cqw; }
+
+@media (prefers-reduced-motion: reduce) {
+  .book, .cover-wrap, .cf-photo { transition: none; }
+}
+
+/* ---------- Inner page placeholder ---------- */
+.page-head { padding: 3rem 0 2rem; border-bottom: 2px solid var(--ink); }
+.page-head h1 { font-size: clamp(3rem, 10vw, 8rem); font-weight: 900; }
+.page-body { padding: 2rem 0 5rem; }
+
+/* ---------- Footer ---------- */
+.site-footer { border-top: 3px solid var(--ink); padding: 2rem 0; font-size: .8rem; }
+.site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+.site-footer ul { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; }
+
+/* ---------- Respect reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ticker-track { animation: none; }
+}
+
+/* Film grain over the whole page: a static generated noise image that ignores clicks */
+body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: .13;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}

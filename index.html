@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ARCHIVE: A Museum of Fashion, 1990-2009</title>
+  <meta name="description" content="A virtual fashion museum exploring the designers, runway shows and models of the 1990s and 2000s.">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header"><div class="wrap"><a class="logo" href="index.html">ARCHIVE</a></div></header>
+  <div class="ticker" id="ticker"></div>
+
+  <main id="main" class="cover">
+    <div class="wrap">
+      <div class="cover-meta label">
+        <span>Issue N&ordm; 01</span>
+        <span>1990 &mdash; 2009</span>
+        <span>The Fashion Museum</span>
+      </div>
+
+      <h1 class="masthead">ARCH<em>I</em>VE</h1>
+      <p class="cover-tagline">Two decades of runways, designers and the faces that wore them.</p>
+
+      <section class="stage" aria-labelledby="stage-title">
+        <h2 id="stage-title" class="sr-only">The magazine</h2>
+        <p class="label stage-hint" id="magHint">Click the cover to open the issue</p>
+
+        <div class="book" id="book">
+          <!-- RIGHT PAGE: the menu. Hidden and unreachable until the magazine is opened. -->
+          <div class="right-page" id="contentsPage">
+            <div class="pg-head"><span>Contents</span><span>Page 02</span></div>
+            <h3 class="pg-title">In this issue</h3>
+            <nav aria-label="Magazine contents">
+              <ol class="toc">
+            <li><a href="designers.html"><span><span class="toc-title">Designers</span><span class="toc-desc">Nine names who shaped the era</span></span><span class="toc-pg" aria-hidden="true">04</span></a></li>
+            <li><a href="runways.html"><span><span class="toc-title">Runways</span><span class="toc-desc">The shows people still talk about</span></span><span class="toc-pg" aria-hidden="true">18</span></a></li>
+            <li><a href="models.html"><span><span class="toc-title">Models</span><span class="toc-desc">From Naomi to Doutzen</span></span><span class="toc-pg" aria-hidden="true">32</span></a></li>
+            <li><a href="timeline.html"><span><span class="toc-title">Timeline</span><span class="toc-desc">1990 to 2009, year by year</span></span><span class="toc-pg" aria-hidden="true">46</span></a></li>
+            <li><a href="mannequin.html"><span><span class="toc-title">Mannequin Room</span><span class="toc-desc">Dress the archive yourself</span></span><span class="toc-pg" aria-hidden="true">58</span></a></li>
+            <li><a href="search.html"><span><span class="toc-title">Search</span><span class="toc-desc">Find any designer, show or model</span></span><span class="toc-pg" aria-hidden="true">70</span></a></li>
+              </ol>
+            </nav>
+            <button type="button" class="close-btn" id="closeMag">Close magazine &times;</button>
+          </div>
+
+          <!-- COVER: front = the cover you click, back = inside of the cover (left page) -->
+          <div class="cover-wrap" id="coverWrap">
+            <button type="button" class="cover-front" id="coverBtn" aria-expanded="false" aria-controls="contentsPage" aria-label="Open the magazine: Archive, issue 1">
+              <span class="cf-photo" aria-hidden="true"></span>
+              <span class="cf-shade" aria-hidden="true"></span>
+              <span class="mf-masthead">ARCHIVE</span>
+              <svg class="mf-form" viewBox="0 0 300 600" aria-hidden="true" focusable="false">
+                <defs><pattern id="mfdots" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.7" fill="currentColor" opacity=".5"/></pattern></defs>
+                <!-- neck cap + neck -->
+                <circle cx="150" cy="30" r="10" fill="currentColor"/>
+                <rect x="143" y="38" width="14" height="42" fill="currentColor"/>
+                <!-- body: sloped shoulders, armholes, bust, waist, hips -->
+                <path d="M142 78 C118 82 88 92 66 112 C58 120 60 130 70 138 C80 146 84 158 80 174 C76 192 74 206 84 228 C92 246 98 258 98 272 C98 298 76 324 68 354 C64 374 70 394 84 410 C100 426 126 432 150 432 C174 432 200 426 216 410 C230 394 236 374 232 354 C224 324 202 298 202 272 C202 258 208 246 216 228 C226 206 224 192 220 174 C216 158 220 146 230 138 C240 130 242 120 234 112 C212 92 182 82 158 78 Z"
+                      fill="url(#mfdots)" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+                <!-- princess seams, centre front and waist tape -->
+                <path d="M120 90 C108 140 114 206 102 268 C96 320 84 366 92 414" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".7"/>
+                <path d="M180 90 C192 140 186 206 198 268 C204 320 216 366 208 414" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".7"/>
+                <path d="M150 82 L150 430" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 5" opacity=".6"/>
+                <path d="M98 270 C130 280 170 280 202 270" fill="none" stroke="currentColor" stroke-width="2.2"/>
+                <!-- stand: pole + three-legged base -->
+                <rect x="147" y="432" width="6" height="126" fill="currentColor"/>
+                <path d="M150 556 L94 592 M150 556 L206 592 M150 556 L150 596" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+              <span class="mf-tag">The era that never left</span>
+              <span class="mf-bottom"><span class="mf-credit" id="coverCredit"></span><span class="barcode" aria-hidden="true"></span></span>
+              <span class="mf-gloss" aria-hidden="true"></span>
+            </button>
+            <div class="cover-back" id="coverBack">
+              <div class="cb-photo" id="insidePhoto" aria-hidden="true"></div>
+              <p class="cb-credit" id="insideCredit"></p>
+              <h3>Welcome to the museum</h3>
+              <p>A digital museum of the fashion of the 1990s and 2000s: the designers who changed what we wear, the runway shows that became legends, and the models who gave them a face.</p>
+              <p class="cb-sign">&mdash; The Editor</p>
+            </div>
+          </div>
+          <div class="book-shadow" aria-hidden="true"></div>
+        </div>
+
+        <noscript>
+          <p>Contents:</p>
+          <ul>
+        <li><a href="designers.html">Designers</a></li>
+        <li><a href="runways.html">Runways</a></li>
+        <li><a href="models.html">Models</a></li>
+        <li><a href="timeline.html">Timeline</a></li>
+        <li><a href="mannequin.html">Mannequin Room</a></li>
+        <li><a href="search.html">Search</a></li>
+          </ul>
+        </noscript>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+</body>
+</html>
