@@ -8,8 +8,8 @@
   --paper: #e8e8e5;        /* soft grey magazine paper */
   --paper-dark: #d6d6d2;
   --paper-light: #f6f6f3;  /* page white (magazine pages) */
-  --red: #111111;          /* accent = black now (kept the variable name so nothing else changes) */
-  --accent-dark-bg: #e8e8e5; /* accent colour on black areas */
+  --red: #b3141f;          /* the one accent colour (AA contrast on the paper colours) */
+  --accent-dark-bg: #ff6b6b; /* the same accent, lighter, for black areas (AA on black) */
   --grey: #4a4a4a;         /* secondary text, AA on paper */
 
   --font-display: "Bodoni Moda", "Didot", Georgia, serif;
@@ -219,3 +219,36 @@ body::after {
 .src-list li { margin-bottom: .4rem; overflow-wrap: anywhere; }
 .note { font-size: .8rem; color: var(--grey); }
 .pager { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--ink); font-size: .85rem; }
+
+/* ---------- "Moments to know" timeline on profile pages ---------- */
+.moments { list-style: none; margin: 0 0 1rem; padding: 0; border-top: 1px solid var(--ink); }
+.moments li { display: grid; gap: .25rem 1.25rem; grid-template-columns: 1fr; padding: .85rem 0; border-bottom: 1px solid #0003; }
+@media (min-width: 600px) { .moments li { grid-template-columns: 9.5rem 1fr; } }
+.moments .when { font-family: var(--font-display); font-style: italic; font-weight: 700; font-size: 1.15rem; line-height: 1.2; }
+
+/* ---------- Links between related pages ---------- */
+.related { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; margin: 0 0 1rem; line-height: 1.25; }
+.muted { font-family: var(--font-mono); font-size: .8rem; font-weight: 400; color: var(--grey); }
+
+/* ---------- Magazine touches: numbers, standfirst, drop cap, dark band ---------- */
+.card { position: relative; }
+.card-num { position: absolute; top: .7rem; right: 1rem; font-family: var(--font-display); font-weight: 900; font-size: 2.6rem; line-height: 1; color: var(--red); }
+.card-tag { display: block; padding-right: 3.5rem; }
+.card:hover .card-num, .card:focus-visible .card-num { color: var(--accent-dark-bg); }
+
+.standfirst { font-family: var(--font-display); font-style: italic; font-size: clamp(1.2rem, 2.6vw, 1.9rem); line-height: 1.25; max-width: 32ch; margin: 1.25rem 0 0; color: var(--red); }
+
+.profile-text > h2:first-child + p::first-letter { float: left; font-family: var(--font-display); font-weight: 900; font-size: 4.6rem; line-height: .8; padding: .35rem .6rem 0 0; }
+
+.facts-dark { background: var(--ink); color: var(--paper-light); }
+.facts-dark dt { color: #b9b9b4; }
+.facts-dark h2 { color: var(--accent-dark-bg); }
+
+.dark-band { background: var(--ink); color: var(--paper-light); padding: 3.5rem 0; margin-top: 1rem; }
+.dark-band h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-style: italic; margin: 0 0 1.5rem; color: var(--paper-light); }
+.dark-band .moments { border-top-color: #f6f6f3; margin: 0; }
+.dark-band .moments li { border-bottom-color: #f6f6f33d; }
+.dark-band .moments .when { color: var(--accent-dark-bg); }
+.dark-band :focus-visible { outline-color: var(--paper-light); background: transparent; }
+.nav a[aria-current="page"] { border-bottom-color: var(--red); }
+.pager { margin-bottom: 3rem; }

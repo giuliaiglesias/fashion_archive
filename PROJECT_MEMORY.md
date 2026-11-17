@@ -39,6 +39,8 @@ I used Claude (Anthropic) throughout this project. This is what each of us did.
 ## Decision log
 - 2026-11-16: Switched from meditation to fashion museum. Chose plain HTML/CSS/JS + GitHub Pages. Chose 90s editorial style.
 - 2026-11-17: Restarted the repository to keep it clean. Chose one runway show per designer, and models who are linked to those designers' shows. Decided the black scrolling strip at the top made the page messy, so it was removed.
+- 2026-11-17: While checking sources for the runway pages, found and corrected a factual mistake in the Galliano page (the Marchesa Casati inspiration belongs to the Spring/Summer 1998 Dior show, not 1997). Lesson: check every claim against a second source.
+- 2026-11-17: Decided the inner pages felt too plain next to the magazine home page. Added numbered cards, an italic standfirst under each title, a drop cap, a black "Moments to know" band, and one red accent (checked for AA contrast).
 
 ## Design iteration log (evidence of planning and iteration)
 The home page went through several versions. Each one is saved in the repository history/branches.
