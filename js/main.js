@@ -9,6 +9,7 @@ const PAGES = [
   { href: "models.html",    label: "Models" },
   { href: "timeline.html",  label: "Timeline" },
   { href: "mannequin.html", label: "Mannequin Room" },
+  { href: "quiz.html",      label: "Quiz" },
   { href: "search.html",    label: "Search" },
 ];
 
@@ -383,3 +384,146 @@ function initMannequin() {
   describe();
 }
 document.addEventListener("DOMContentLoaded", initMannequin);
+
+/* ==========================================================
+   SEARCH (search.html)
+   The page carries a small list of every designer, show and
+   model as JSON. Typing filters that list. Accents and capital
+   letters are ignored, and every word you type must match.
+   ========================================================== */
+function initSearch() {
+  const box = document.getElementById("q");
+  const out = document.getElementById("srResults");
+  if (!box || !out) return;
+  const data = JSON.parse(document.getElementById("srData").textContent);
+  const count = document.getElementById("srCount");
+  const ideas = document.getElementById("srIdeas");
+  const kinds = { designer: true, runway: true, model: true };
+  const label = { designer: "Designer", runway: "Runway", model: "Model" };
+  const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  data.forEach(d => d.hay = norm([d.n, d.l, d.k].join(" ")));
+
+  ["McQueen", "Paris", "1995", "Brazil", "Milan", "grunge", "Naomi"].forEach(w => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "sr-idea"; b.textContent = w;
+    b.addEventListener("click", () => { box.value = w; box.focus(); run(); });
+    ideas.lastElementChild.appendChild(b);
+  });
+
+  function run() {
+    const words = norm(box.value).split(/\s+/).filter(Boolean);
+    const list = data.filter(d => kinds[d.t] && words.every(w => d.hay.includes(w)));
+    ideas.hidden = words.length > 0;
+    out.innerHTML = "";
+    list.forEach(d => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = d.u;
+      const tag = document.createElement("span"); tag.className = "sr-tag sr-" + d.t; tag.textContent = label[d.t];
+      const name = document.createElement("span"); name.className = "sr-name"; name.textContent = d.n;
+      const line = document.createElement("span"); line.className = "sr-line"; line.textContent = d.l;
+      a.append(tag, name, line); li.appendChild(a); out.appendChild(li);
+    });
+    count.textContent = words.length === 0
+      ? data.filter(d => kinds[d.t]).length + " entries in the archive. Start typing to search."
+      : list.length === 0 ? "Nothing found. Try another word, or switch the filters on."
+      : list.length + (list.length === 1 ? " result" : " results");
+    if (words.length === 0) out.innerHTML = "";
+  }
+  box.addEventListener("input", run);
+  document.querySelectorAll(".sr-f").forEach(b => b.addEventListener("click", () => {
+    kinds[b.dataset.k] = !kinds[b.dataset.k];
+    b.setAttribute("aria-pressed", String(kinds[b.dataset.k])); run();
+  }));
+  const q = new URLSearchParams(location.search).get("q");
+  if (q) box.value = q;
+  run();
+}
+document.addEventListener("DOMContentLoaded", initSearch);
+
+/* ==========================================================
+   QUIZ (quiz.html)
+   The questions are stored as JSON inside the page. Each round
+   picks 10 of them at random and shuffles the answers.
+   ========================================================== */
+function initQuiz() {
+  const root = document.getElementById("qz");
+  if (!root) return;
+  const ALL = JSON.parse(document.getElementById("qzData").textContent);
+  const ROUND = 10;
+  let qs = [], n = 0, score = 0, missed = [];
+
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; };
+  const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  function show(...nodes) { root.replaceChildren(...nodes); const h = root.querySelector("[data-focus]"); if (h) h.focus(); }
+
+  function start() {
+    const h = el("h2", "qz-q", "Ready?"); h.tabIndex = -1; h.dataset.focus = "1";
+    const p = el("p", "qz-text", "Every answer comes from the pages of this museum, so if you get one wrong you can read the story behind it. Each round has " + ROUND + " questions, picked at random.");
+    const b = el("button", "qz-btn", "Start the quiz"); b.type = "button"; b.addEventListener("click", begin);
+    show(h, p, b);
+  }
+  function begin() {
+    qs = shuffle(ALL).slice(0, ROUND).map(q => {
+      const order = shuffle(q.a.map((t, i) => i));
+      return Object.assign({}, q, { opts: order.map(i => q.a[i]), right: order.indexOf(q.c) });
+    });
+    n = 0; score = 0; missed = [];
+    ask();
+  }
+  function ask() {
+    const q = qs[n];
+    const prog = el("p", "qz-prog", "Question " + (n + 1) + " of " + qs.length + " · Score " + score);
+    const bar = el("div", "qz-bar"); bar.setAttribute("aria-hidden", "true");
+    const fill = el("span"); fill.style.width = (n / qs.length * 100) + "%"; bar.appendChild(fill);
+    const h = el("h2", "qz-q", q.q); h.tabIndex = -1; h.dataset.focus = "1";
+    const list = el("ul", "qz-opts");
+    const fb = el("div", "qz-fb"); fb.setAttribute("role", "status");
+    q.opts.forEach((t, i) => {
+      const li = el("li"); const b = el("button", "qz-opt"); b.type = "button";
+      b.append(el("span", "qz-mark"), el("span", "qz-t", t));
+      b.addEventListener("click", () => answer(i, list, fb, q));
+      li.appendChild(b); list.appendChild(li);
+    });
+    show(prog, bar, h, list, fb);
+  }
+  function answer(i, list, fb, q) {
+    const ok = i === q.right;
+    if (ok) score++; else missed.push(q);
+    list.querySelectorAll(".qz-opt").forEach((b, k) => {
+      b.disabled = true;
+      const mark = b.querySelector(".qz-mark");
+      if (k === q.right) { b.classList.add("right"); mark.textContent = "✓ Correct"; }
+      else if (k === i) { b.classList.add("wrong"); mark.textContent = "✗ Your answer"; }
+    });
+    const head = el("p", "qz-verdict", ok ? "Correct!" : "Not quite.");
+    const exp = el("p", "qz-exp", q.e + " ");
+    const a = el("a", null, "Read about " + q.ul + " →"); a.href = q.u; exp.appendChild(a);
+    const next = el("button", "qz-btn", n + 1 === qs.length ? "See my score" : "Next question"); next.type = "button";
+    next.addEventListener("click", () => { n++; n < qs.length ? ask() : finish(); });
+    fb.replaceChildren(head, exp, next);
+    next.focus();
+  }
+  function finish() {
+    const h = el("h2", "qz-q", "You scored " + score + " out of " + qs.length); h.tabIndex = -1; h.dataset.focus = "1";
+    const msg = score >= 9 ? "Museum curator! You know this archive inside out."
+      : score >= 6 ? "Front row material. You were paying attention."
+      : score >= 3 ? "Not bad. A walk through the pages will fix the rest."
+      : "Time for a visit to the museum. Start with the Runways.";
+    const nodes = [h, el("p", "qz-text", msg)];
+    if (missed.length) {
+      nodes.push(el("h3", "qz-sub", "Read up on the ones you missed"));
+      const ul = el("ul", "qz-missed");
+      missed.forEach(q => {
+        const li = el("li"); li.append(el("span", "qz-mq", q.q + " "), el("strong", null, q.a[q.c] + ". "));
+        const a = el("a", null, "Read about " + q.ul + " →"); a.href = q.u; li.appendChild(a); ul.appendChild(li);
+      });
+      nodes.push(ul);
+    }
+    const b = el("button", "qz-btn", "Play again"); b.type = "button"; b.addEventListener("click", begin);
+    nodes.push(b);
+    show(...nodes);
+  }
+  start();
+}
+document.addEventListener("DOMContentLoaded", initQuiz);

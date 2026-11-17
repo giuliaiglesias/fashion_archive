@@ -45,6 +45,8 @@ I used Claude (Anthropic) throughout this project. This is what each of us did.
 - 2026-11-17: Compared three layouts for the Models page (contact sheet, catwalk timeline, casting board) and chose the casting board of taped Polaroids. Built the Timeline page automatically from the dates already written on the designer, runway and model pages, so it cannot disagree with them.
 - 2026-11-17: Redesigned the Runways page after feedback that it was repetitive. Compared invitations, a show programme and a catwalk; chose front-row tickets (seat numbers, barcode stub, perforation). Also made the Timeline interactive (year scrubber, filters, arrow keys).
 - 2026-11-17: Built the Mannequin Room: a drawn mannequin that can be dressed with nine pieces taken from the shows and designers in the museum (red dress, white dress with the robot spray, jungle dress, and so on). Each piece links back to its story. I drew the clothes as simple illustrations and say so on the page, because they are not copies of the real garments.
+- 2026-11-18: Built the Search page. It searches a list of the 27 designers, shows and models that is built into the page, ignores accents and capitals, has filters, and suggests words to try. Added YouTube videos to all nine runway pages.
+- 2026-11-18: Replaced the idea of a plain extra page with a Quiz (12 questions, 10 per round, random order). Every question and answer comes from facts already checked on the site pages, and each answer links back to its page so the quiz also teaches. Added it to the menu and the magazine contents.
 
 ## Design iteration log (evidence of planning and iteration)
 The home page went through several versions. Each one is saved in the repository history/branches.
