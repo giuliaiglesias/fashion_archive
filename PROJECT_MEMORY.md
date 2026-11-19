@@ -62,6 +62,7 @@ I used Claude (Anthropic) throughout this project. This is what each of us did.
 - 2026-11-18: Replaced the idea of a plain extra page with a Quiz (12 questions, 10 per round, random order). Every question and answer comes from facts already checked on the site pages, and each answer links back to its page so the quiz also teaches. Added it to the menu and the magazine contents.
 - 2026-11-19: Rewrote the "How AI was used" section of the About page to describe more fully what I decided and directed myself (it is still an honest split: I directed and chose, the assistant wrote the code).
 - 2026-11-19: Added the title and channel of every runway video as captions (copied from YouTube). The Versace 2000 clip is from the Grammy Awards, not a runway, and the caption says so.
+- 2026-11-19: Did not like the initials on the model Polaroids; chose to show a big fact from each model's page instead (for example 500+ magazine covers, No. 13), so each Polaroid says something real.
 - 2026-11-19: Wrote the About, Sources and Accessibility pages. The Sources page is built from the same data as the profile pages, so every page lists the same sources. The Accessibility page only claims things that were checked, and lists what was not tested yet (screen reader, 200% zoom).
 
 ## Design iteration log (evidence of planning and iteration)

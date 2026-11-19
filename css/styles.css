@@ -489,3 +489,8 @@ body::after {
 .src-list a:hover, .plain-list a:hover { color: var(--red); }
 .plain-list { max-width: 760px; }
 .page-body section p { max-width: 760px; line-height: 1.6; }
+
+/* Polaroid fact text (replaces initials) */
+.pol-photo { display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center; padding: 1rem; gap: .6rem; align-content: center; }
+.pol-photo .pol-big { font-family: var(--font-display); font-style: italic; font-weight: 900; font-size: clamp(2.6rem, 5vw, 3.6rem); line-height: 1; color: var(--paper-light); }
+.pol-photo .pol-small { font-family: var(--font-mono, "Space Mono", monospace); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: #d4d4d0; line-height: 1.4; max-width: 90%; }
