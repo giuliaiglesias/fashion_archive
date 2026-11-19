@@ -47,6 +47,7 @@ I used Claude (Anthropic) throughout this project. This is what each of us did.
 - 2026-11-17: Built the Mannequin Room: a drawn mannequin that can be dressed with nine pieces taken from the shows and designers in the museum (red dress, white dress with the robot spray, jungle dress, and so on). Each piece links back to its story. I drew the clothes as simple illustrations and say so on the page, because they are not copies of the real garments.
 - 2026-11-18: Built the Search page. It searches a list of the 27 designers, shows and models that is built into the page, ignores accents and capitals, has filters, and suggests words to try. Added YouTube videos to all nine runway pages.
 - 2026-11-18: Replaced the idea of a plain extra page with a Quiz (12 questions, 10 per round, random order). Every question and answer comes from facts already checked on the site pages, and each answer links back to its page so the quiz also teaches. Added it to the menu and the magazine contents.
+- 2026-11-19: Wrote the About, Sources and Accessibility pages. The Sources page is built from the same data as the profile pages, so every page lists the same sources. The Accessibility page only claims things that were checked, and lists what was not tested yet (screen reader, 200% zoom).
 
 ## Design iteration log (evidence of planning and iteration)
 The home page went through several versions. Each one is saved in the repository history/branches.

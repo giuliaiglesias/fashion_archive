@@ -13,8 +13,34 @@
   <header class="site-header" id="site-header"></header>
   <main id="main">
     <div class="wrap">
-      <div class="page-head"><p class="label">ARCHIVE</p><h1>Accessibility</h1></div>
-      <div class="page-body"><p>Accessibility statement coming soon.</p></div>
+      <div class="page-head"><p class="label">ARCHIVE &middot; For everyone</p><h1>Accessibility</h1><p class="standfirst">What this site does to be usable by as many people as possible, and where it falls short.</p></div>
+      <div class="page-body">
+        <section aria-labelledby="a-do"><h2 id="a-do">What has been done</h2>
+          <ul class="plain-list">
+            <li><strong>Keyboard.</strong> Every link and button can be used with the keyboard, and the focus outline is always visible. The magazine on the home page opens with Enter or Space and closes with Esc. The Timeline moves between years with the arrow keys. The Quiz, Search and Mannequin Room are made of normal buttons and fields.</li>
+            <li><strong>Skip link and structure.</strong> Each page starts with a &ldquo;Skip to content&rdquo; link and uses proper landmarks (header, navigation, main, footer) and one main heading, so screen readers can jump around.</li>
+            <li><strong>Language.</strong> Every page declares that it is in English.</li>
+            <li><strong>Contrast.</strong> Text and background colours were chosen to meet WCAG 2.1 level AA contrast, including the red accent and the dark sections.</li>
+            <li><strong>Motion.</strong> If your device is set to reduce motion, the magazine, the cards, the Timeline and the Quiz stop animating.</li>
+            <li><strong>Small screens.</strong> The pages adapt to phone width without sideways scrolling.</li>
+            <li><strong>Not only colour.</strong> In the Quiz, correct and wrong answers are marked with the words &ldquo;Correct&rdquo; and &ldquo;Your answer&rdquo;, not just green and red. In the Mannequin Room each piece says &ldquo;Put on&rdquo; or &ldquo;Take off&rdquo;.</li>
+            <li><strong>Announcements.</strong> The Search count, the Timeline year and the Mannequin Room look are announced to screen readers when they change.</li>
+            <li><strong>Embedded videos</strong> have a title and a plain link to the same video on YouTube.</li>
+            <li><strong>Without JavaScript.</strong> The pages with text still work. The interactive pages show a message with links to the main sections.</li>
+          </ul>
+        </section>
+        <section aria-labelledby="a-test"><h2 id="a-test">How it was checked</h2>
+          <p>The automated accessibility tool axe-core was run on every page and found no violations when this page was written (November 2026). Automated tools only catch part of the possible problems, so the keyboard behaviour and the phone layout were also checked with scripted tests.</p>
+        </section>
+        <section aria-labelledby="a-limits"><h2 id="a-limits">Known limits</h2>
+          <ul class="plain-list">
+            <li>The site has not yet been tested with a screen reader or with the browser zoomed to 200%.</li>
+            <li>The YouTube videos are third-party players. Their captions and controls depend on YouTube and on each video.</li>
+            <li>The mannequin and clothes are illustrations. They have a text description of what the mannequin wears, but not a detailed description of each drawing.</li>
+          </ul>
+        </section>
+        <p>This is a student project, so the checks above are what the author could do. If something does not work for you, the author would like to know.</p>
+      </div>
     </div>
   </main>
   <footer class="site-footer" id="site-footer"></footer>
