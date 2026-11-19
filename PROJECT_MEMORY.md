@@ -3,6 +3,17 @@
 ## Purpose and audience
 A virtual museum where fashion students and enthusiasts explore the designers, runway shows and models of the 1990s and 2000s.
 
+## In my own words (written by me, Giulia)
+**Why I chose this topic:** I've always been passionate about fashion. Before studying communication, all I wanted was to study fashion business. I wanted to create a virtual space that merged entertainment and knowledge for people who, like me, are fashion lovers.
+
+**How I chose the content:** I already knew most of the things I included. I chose the most inspirational designers and my favourite runways.
+
+**The hardest part:** Choosing aesthetically pleasing designs that still made the page professional and interesting.
+
+**What I changed along the way:** I changed the Runways page to tickets. For the models I had to come up with a different idea, because I couldn't use pictures: most of them are copyrighted. I came up with Polaroids, which remind me of the backstage of a runway or of castings.
+
+(to do: what I learned while making it, and what I would do with more time.)
+
 ## Change from original proposal (IMPORTANT, explain to instructor)
 - Original idea: a wellness / meditation website (motivational phrases, problem-solving).
 - New idea: a fashion museum website.
@@ -34,7 +45,7 @@ I used Claude (Anthropic) throughout this project. This is what each of us did.
 | Photos and credits | Does not download or add photos of people | (to do) Add licensed photos and credit them in SOURCES.md |
 | Testing | Ran automated checks (layout, links, keyboard) | (to do) Test on my own devices and fill in TESTING.md |
 
-(to do: add a few sentences about what I learned.)
+(My own words are in the section "In my own words" above.)
 
 ## Decision log
 - 2026-11-16: Switched from meditation to fashion museum. Chose plain HTML/CSS/JS + GitHub Pages. Chose 90s editorial style.
