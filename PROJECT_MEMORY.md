@@ -10,6 +10,8 @@ A virtual museum where fashion students and enthusiasts explore the designers, r
 
 **The hardest part:** Choosing aesthetically pleasing designs that still made the page professional and interesting.
 
+**More about my choices (in my words):** I always remembered seeing original tickets when people were invited to runways, so I thought I could introduce each runway with a ticket that looked as realistic as possible. I gave the idea of the quiz: I thought it could push people to learn more in a fun way. For the mannequin, I wanted it to be less geometrical. I chose the videos of the runways so people can have the full idea.
+
 **What I changed along the way:** I changed the Runways page to tickets. For the models I had to come up with a different idea, because I couldn't use pictures: most of them are copyrighted. I came up with Polaroids, which remind me of the backstage of a runway or of castings.
 
 (to do: what I learned while making it, and what I would do with more time.)
@@ -54,10 +56,11 @@ I used Claude (Anthropic) throughout this project. This is what each of us did.
 - 2026-11-17: Decided the inner pages felt too plain next to the magazine home page. Added numbered cards, an italic standfirst under each title, a drop cap, a black "Moments to know" band, and one red accent (checked for AA contrast).
 - 2026-11-17: Chose nine models who connect to the designers and shows (for example Shalom Harlow and McQueen's No. 13), plus three 2000s models (Gisele Bündchen, Adriana Lima, Doutzen Kroes) to cover the whole 1990-2009 period. Left out private or legal matters and kept to careers.
 - 2026-11-17: Compared three layouts for the Models page (contact sheet, catwalk timeline, casting board) and chose the casting board of taped Polaroids. Built the Timeline page automatically from the dates already written on the designer, runway and model pages, so it cannot disagree with them.
-- 2026-11-17: Redesigned the Runways page after feedback that it was repetitive. Compared invitations, a show programme and a catwalk; chose front-row tickets (seat numbers, barcode stub, perforation). Also made the Timeline interactive (year scrubber, filters, arrow keys).
+- 2026-11-17: Redesigned the Runways page after I said it was not original enough and asked for something more unique. Compared invitations, a show programme and a catwalk; chose front-row tickets (seat numbers, barcode stub, perforation). Also made the Timeline interactive (year scrubber, filters, arrow keys).
 - 2026-11-17: Built the Mannequin Room: a drawn mannequin that can be dressed with nine pieces taken from the shows and designers in the museum (red dress, white dress with the robot spray, jungle dress, and so on). Each piece links back to its story. I drew the clothes as simple illustrations and say so on the page, because they are not copies of the real garments.
 - 2026-11-18: Built the Search page. It searches a list of the 27 designers, shows and models that is built into the page, ignores accents and capitals, has filters, and suggests words to try. Added YouTube videos to all nine runway pages.
 - 2026-11-18: Replaced the idea of a plain extra page with a Quiz (12 questions, 10 per round, random order). Every question and answer comes from facts already checked on the site pages, and each answer links back to its page so the quiz also teaches. Added it to the menu and the magazine contents.
+- 2026-11-19: Rewrote the "How AI was used" section of the About page to describe more fully what I decided and directed myself (it is still an honest split: I directed and chose, the assistant wrote the code).
 - 2026-11-19: Wrote the About, Sources and Accessibility pages. The Sources page is built from the same data as the profile pages, so every page lists the same sources. The Accessibility page only claims things that were checked, and lists what was not tested yet (screen reader, 200% zoom).
 
 ## Design iteration log (evidence of planning and iteration)
